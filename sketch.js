@@ -4,11 +4,12 @@ function setup() {
   
   n = 95
   accuracy = 10
+  
 
   function draw() {
-    background(n,n,n);
-  
-    fill(255,255,255)
+    background(255,255,255);
+    
+    noFill()
     circle(mouseX,mouseY,n)
     
     noFill()
