@@ -2,21 +2,32 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
   }
   
-  n = 50
+  n = 95
   accuracy = 10
 
   function draw() {
-    background(mouseX,mouseY,n);
+    background(n,n,n);
   
-    fill(300,300,300)
+    fill(255,255,255)
     circle(mouseX,mouseY,n)
+    
+    noFill()
+    circle(mouseX,mouseY,80)
+    
+    noFill()
+    circle(mouseX,mouseY,85)
+    
+    noFill()
+    circle(mouseX,mouseY,40)
+    
     
     line(mouseX-(n/2),mouseY,mouseX+(n/2),mouseY)
     line(mouseX,mouseY-(n/2),mouseX,mouseY+(n/2))
     
-    if (n> 255 || n < 50){
+    if (n> 300 || n < 95){
       accuracy = accuracy*-1
     }
     
     n = n + accuracy
+    
   }
