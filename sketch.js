@@ -70,11 +70,7 @@ function draw() {
       r_change = random(1,20)*-1
       r_change = r_change*-1
     }
-  
-    if (b == (mouseX + random(-20,20)) || r == (mouseY + random(-10,10))){
-      ball_speed = ball_speed*-1
-      r_change = r_change*-1
-    }
+
     
     n = n + accuracy1
     a = a + accuracy2
@@ -91,4 +87,3 @@ function mousePressed() {
     value = 50;
   }
 }
-    
