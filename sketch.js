@@ -5,17 +5,18 @@ function setup() {
 n = 95
 a = 1
 b = 1
+r = 10
 accuracy1 = 10
 accuracy2 = 0.5
-ball_speed = 15
+ball_speed = 20
+r_change = 0
 let value = 0
 
 function draw() {
     background(255,255,255)
-    
     fill(a,n,b)
     noStroke()
-    circle(b, windowHeight/2,50)
+    circle(b, r,50)
   
     stroke(255,0,0)
     strokeWeight(4)
@@ -58,11 +59,27 @@ function draw() {
     
     if (b>windowWidth || b<0){
       ball_speed = ball_speed*-1
+      r_change = random(1,9)
+    }
+  
+    if (r>windowHeight){
+      r_change = random(1,20)*-1
+    }
+    
+    if (r<0){
+      r_change = random(1,20)*-1
+      r_change = r_change*-1
+    }
+  
+    if (b == (mouseX + random(-20,20)) || r == (mouseY + random(-10,10))){
+      ball_speed = ball_speed*-1
+      r_change = r_change*-1
     }
     
     n = n + accuracy1
     a = a + accuracy2
     b = b + ball_speed
+    r = r + r_change
   
     while(value>0){
     value = value - 1;
