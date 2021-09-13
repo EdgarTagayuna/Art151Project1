@@ -1,5 +1,6 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  LifeBar=(windowWidth-100)
 }
 
 n = 95
@@ -13,10 +14,34 @@ r_change = 0
 let value = 0
 
 function draw() {
-    background(255,255,255)
+    background(0,0,0)
     fill(a,n,b)
     noStroke()
     circle(b, r,50)
+  
+  
+  
+    noStroke()
+    fill(255,255,255)
+    circle(windowWidth/2,windowHeight/2,200)
+  
+    fill(0)
+    circle(windowWidth/2-50,windowHeight/2,50)
+    circle(windowWidth/2+50,windowHeight/2,50)
+  
+  
+    fill(255,0,0)
+    arc(windowWidth/2, windowHeight/2+40, 100, 80, 0, PI, CHORD)
+  
+  
+    noFill()
+    stroke(30)
+    rect(100,40,windowWidth-100,50)
+  
+    fill(0,255,0)
+    noStroke()
+    rect(100,40,LifeBar,50)
+    
   
     stroke(255,0,0)
     strokeWeight(4)
