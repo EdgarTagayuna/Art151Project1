@@ -36,11 +36,11 @@ function draw() {
   
     noFill()
     stroke(30)
-    rect(100,40,windowWidth-100,50)
+    rect(50,40,windowWidth-100,50)
   
     fill(0,255,0)
     noStroke()
-    rect(100,40,LifeBar,50)
+    rect(50,40,LifeBar,50)
     
   
     stroke(255,0,0)
@@ -110,5 +110,6 @@ function draw() {
 function mousePressed() {
   if (value == 0) {
     value = 50;
+    LifeBar = LifeBar-25;
   }
 }
