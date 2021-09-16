@@ -4,19 +4,57 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   b = random(1,windowWidth-random(1,100))
   r = random(1,windowHeight-random(1,100))
-  ball_speed = 20*random(-1,1)
+  b_change = 20*random(-1,1)
   r_change = random(1,20)*random(-1,1)
   
-  //Health Bars
-  Cursor_Bar = windowWidth/3
-  LifeBar=(windowWidth-100)
-  
   //Body Movement
-  Face_Xchange = 5*random(-1,1)
+  Face_Xchange = 10*random(-1,1)
   Face_Ychange = random(1,9)*random(-1,1)
   
   Face_Xmove = 0
   Face_Ymove = 0
+  
+  //Conversation
+  randomInput = 0
+  Countdown = 0
+  dialogue = ''
+  Text_Color = 0
+  Color_Change = 10
+  
+  //White
+  background(255,255,255)
+  
+  //mood number
+  m_nX = Face_Xchange
+  m_nY = Face_Ychange
+  
+  //Facial_Features (Lazy)
+  Closed_Line1_X1 = 0
+  Closed_Line1_Y1 = 0
+  Closed_Line1_X2 = 0
+  Closed_Line1_Y2 = 0
+  
+  Closed_Line2_X1 = 0
+  Closed_Line2_Y1 = 0
+  Closed_Line2_X2 = 0
+  Closed_Line2_Y2 = 0
+   
+  //Facial_Features (Hyper)
+  OpenEyes1 = 0
+  OpenEyes2 = 0
+  Big_Smile = 0
+  
+  //Text Box Color
+  A = random(50,200)
+  B = random(50,200)
+  C = random(50,200)
+  
+  //Outer Face Layer
+  Stroke1 = 255
+  Stroke2 = 255
+  Stroke3 = 255
+  RANDOMIZING = 0
+  
 }
 
 //Ball Parameters
@@ -25,73 +63,115 @@ a = 1
 accuracy1 = 10
 accuracy2 = 0.5
 Difficulty = 1
-Stage = Difficulty
-Diff_Eyes = 0
-
-Obstacle1 = 0
 let value = 0
 
+//Curiosity
+Curious = 0
+JoiningIn1 = 255
+JoiningIn2 = 255
+JoiningIn3 = 255
+
+
 function draw() {
-    if (LifeBar<=0){
-      LifeBar = (windowWidth-100)
-      Difficulty = Difficulty + 1     
+  
+    //Eyes constant basing on mood value
+  
+    if (abs(m_nX) <= 3 && abs(m_nY) <= 3){
+      
+      //left eye
+      Closed_Line1_X1 = (windowWidth/2-75)+Face_Xmove
+      Closed_Line1_Y1 = (windowHeight/2)+Face_Ymove
+      Closed_Line1_X2 = (windowWidth/2-25)+Face_Xmove
+      Closed_Line1_Y2 = (windowHeight/2)+Face_Ymove
+      
+      //right eye
+      Closed_Line2_X1 = (windowWidth/2+25)+Face_Xmove
+      Closed_Line2_Y1 = (windowHeight/2)+Face_Ymove
+      Closed_Line2_X2 = (windowWidth/2+75)+Face_Xmove
+      Closed_Line2_Y2 = (windowHeight/2)+Face_Ymove
+      
+      OpenEyes1 = 0
+      OpenEyes2 = 0
+      
+      Big_Smile = 30
+    
+    }else if (abs(m_nX) > 3 && abs(m_nY) > 3){
+      
+      OpenEyes1 = 50 //Left and right eye sockets
+      OpenEyes2 = 15 //Left and right pupils
+      
+      Closed_Line1_X1 = 0
+      Closed_Line1_Y1 = 0
+      Closed_Line1_X2 = 0
+      Closed_Line1_Y2 = 0
+  
+      Closed_Line2_X1 = 0
+      Closed_Line2_Y1 = 0
+      Closed_Line2_X2 = 0
+      Closed_Line2_Y2 = 0
+      
+      Big_Smile = 65
+    } else if (abs(m_nX) <= 3 || abs(m_nY) <= 3){
+      
+      OpenEyes1 = 50 //Left and right eye sockets
+      OpenEyes2 = 15 //Left and right pupils
+      
+      Closed_Line1_X1 = 0
+      Closed_Line1_Y1 = 0
+      Closed_Line1_X2 = 0
+      Closed_Line1_Y2 = 0
+  
+      Closed_Line2_X1 = 0
+      Closed_Line2_Y1 = 0
+      Closed_Line2_X2 = 0
+      Closed_Line2_Y2 = 0
+      
+      Big_Smile = 65
     }
   
-    if (Difficulty>3){
-      Diff_Eyes = 15
-      Obstacle1 = 50
-    }
   
-    background(0,0,0)
-    fill(255,255,255)
+  
+    //Body
     noStroke()
-    circle(b,r,Obstacle1)
-  
+    fill(Stroke1,Stroke2,Stroke3)
+    circle((windowWidth/2)+Face_Xmove,(windowHeight/2)+Face_Ymove,RANDOMIZING)
   
     //face
     noStroke()
-    fill(255,255,255)
+    fill(JoiningIn1,JoiningIn2,JoiningIn3)
     circle((windowWidth/2)+Face_Xmove,(windowHeight/2)+Face_Ymove,200)
   
-    //eyes
+    //eyes open parameters
+    noStroke()
     fill(0)
-    circle((windowWidth/2-50)+Face_Xmove,(windowHeight/2)+Face_Ymove,50)
-    circle((windowWidth/2+50)+Face_Xmove,(windowHeight/2)+Face_Ymove,50)
+    circle((windowWidth/2-50)+Face_Xmove,(windowHeight/2)+Face_Ymove,OpenEyes1)
+    circle((windowWidth/2+50)+Face_Xmove,(windowHeight/2)+Face_Ymove,OpenEyes1)
     
     fill(255,255,255)
-    circle((windowWidth/2-50)+Face_Xmove,(windowHeight/2)+Face_Ymove,Diff_Eyes)
-    circle((windowWidth/2+50)+Face_Xmove,(windowHeight/2)+Face_Ymove,Diff_Eyes)
+    circle((windowWidth/2-50)+Face_Xmove,(windowHeight/2)+Face_Ymove,OpenEyes2)
+    circle((windowWidth/2+50)+Face_Xmove,(windowHeight/2)+Face_Ymove,OpenEyes2)
+  
+    //closed eyes parameters
+    stroke(0)
+    strokeWeight(15)
+    line(Closed_Line1_X1, Closed_Line1_Y1, Closed_Line1_X2, Closed_Line1_Y2)
+    line(Closed_Line2_X1, Closed_Line2_Y1, Closed_Line2_X2, Closed_Line2_Y2)
+  
+    //Eye brows
+    noFill()
+    strokeWeight(6)
+    arc((windowWidth/2-50)+Face_Xmove, (windowHeight/2)+Face_Ymove, 70, 70, PI, TWO_PI)
+    arc((windowWidth/2+50)+Face_Xmove, (windowHeight/2)+Face_Ymove, 70, 70, PI, TWO_PI)
   
     //mouth
     fill(0,0,0)
-    arc((windowWidth/2)+Face_Xmove, (windowHeight/2+40)+Face_Ymove, 100, 80, 0, PI, CHORD)
+    arc((windowWidth/2)+Face_Xmove, (windowHeight/2+40)+Face_Ymove, 60, Big_Smile, 0, PI, CHORD)
   
-    
-    //Enemy Health Bar
-    noFill()
-    stroke(a,n,b)
-    rect(50,40,windowWidth-100,30)
   
-    fill(0,255,0)
-    noStroke()
-    rect(50,40,LifeBar,30)
-    
-    fill(255,255,255)
-    textSize(24);
-    text('Art 151 Project: Ghost', 55, 62)
-  
-    //Cursor Health Bar
-    noFill()
-    stroke(255,255,255)
-    rect(50,windowHeight-50,windowWidth/3,30)
-  
-    fill(255,204,0)
-    noStroke()
-    rect(50,windowHeight-50,windowWidth/3,30)
-    
+    //Red X mark
   
     stroke(255,0,0)
-    strokeWeight(4)
+    strokeWeight(5)
     line(mouseX,mouseY,mouseX-value,mouseY-value)
     line(mouseX,mouseY,mouseX+value,mouseY+value)
     line(mouseX,mouseY,mouseX+value,mouseY-value)
@@ -99,22 +179,22 @@ function draw() {
    
     //Target
     noFill()
-    stroke(0,255,0)
+    stroke(a,n,mouseX)
     strokeWeight(1)
     circle(mouseX,mouseY,n)
     
     noFill()
-    stroke(0,255,0)
+    stroke(a,n,mouseX)
     strokeWeight(1)
     circle(mouseX,mouseY,80)
     
     noFill()
-    stroke(0,255,0)
+    stroke(a,n,mouseX)
     strokeWeight(1)
     circle(mouseX,mouseY,85)
     
     noFill()
-    stroke(0,255,0)
+    stroke(a,n,mouseX)
     strokeWeight(1)
     circle(mouseX,mouseY,40)
     
@@ -129,9 +209,9 @@ function draw() {
     if (a>255 || a<0){
       accuracy2 = accuracy2*-1
     }
-    
+  
     if (b>windowWidth || b<0){
-      ball_speed = ball_speed*-1
+      b_change = b_change*-1
       r_change = random(1,20)
     }
   
@@ -143,6 +223,7 @@ function draw() {
       r_change = random(1,20)*-1
       r_change = r_change*-1
     }
+  
   
     if ((Face_Xmove+(windowWidth/2)+100)>windowWidth || (Face_Xmove+(windowWidth/2)-100)<0){
       Face_Xchange = Face_Xchange*-1
@@ -157,25 +238,302 @@ function draw() {
     
     n = n + accuracy1
     a = a + accuracy2
-    b = b + ball_speed
+    b = b + b_change
     r = r + r_change
   
-    if (b>mouseX+300 || b<mouseX-300){
-      Cursor_Bar = Cursor_Bar - 1
+    //Dialogues
+    
+    if (randomInput <= 1){
+      RANDOMIZING = 0
+      dialogue = 'Hello World'
+    } else if (randomInput <= 2){
+      RANDOMIZING = 0
+      dialogue = 'Having fun yet?'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 255
+      B = 255
+      C = 0
+    } else if (randomInput <=3){
+      RANDOMIZING = 0
+      dialogue = 'You can call me ART 151 Project 1'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 230
+      B = 220
+      C = 120
+    } else if (randomInput <= 4){
+      RANDOMIZING = 0
+      dialogue = 'Can we be friends?'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 255
+      B = 192
+      C = 203
+    } else if (randomInput <= 5){
+      RANDOMIZING = 0
+      dialogue = 'What time is it?'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 221
+      B = 160
+      C = 221
+    } else if (randomInput <= 6){
+      RANDOMIZING = 0
+      dialogue = 'Sometimes I do not feel like moving a lot. A lazy mood if you will...'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 48
+      B = 191
+      C = 191
+    } else if (randomInput <= 7){
+      RANDOMIZING = 0
+      dialogue = 'When you click in front of me, a red x symbol shows up.'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 255
+      B = 255
+      C = 0
+    } else if (randomInput <= 8){
+      RANDOMIZING = 0
+      dialogue = 'I do not like red x symbols, so I move around them!'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 0
+      JoiningIn3 = 0
+      
+      A = 190
+      B = 0
+      C = 0
+    } else if (randomInput <= 9){
+      RANDOMIZING = 0
+      dialogue = 'I have about... 50 or so dialogues give or take?'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 100
+      B = 230
+      C = 120
+    } else if (randomInput <= 10){
+      RANDOMIZING = 0
+      dialogue = 'My creator is lazy, so he probably will not add more dialogues'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 255
+      B = 209
+      C = 220
+    } else if (randomInput <= 11){
+      RANDOMIZING = 0
+      dialogue ='Other times, I feel like moving a lot. A hyper mood if you will!'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 255
+      B = 255
+      C = 0
+    } else if (randomInput <= 12){
+      RANDOMIZING = 0
+      dialogue = 'Hey!'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 0
+      JoiningIn3 = 0
+      
+      A = 190
+      B = 0
+      C = 0
+    } else if (randomInput <= 13){
+      RANDOMIZING = 0
+      dialogue ='Stop moving around your mouse. You are making a mess!'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 0
+      JoiningIn3 = 0
+      
+      A = 190
+      B = 0
+      C = 0
+    } else if (randomInput <= 14){
+      RANDOMIZING = 0
+      dialogue = 'Is it really that fun messing around in this blank page?'
+          
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 135
+      B = 206
+      C = 235
+    } else if (randomInput <= 15){
+      RANDOMIZING = 0
+      dialogue = 'How about this? Am I doing it right?'
+      JoiningIn1 = 255
+      JoiningIn2 = 192
+      JoiningIn3 = 203
+      
+      A = 255
+      B = 102
+      C = 0
+    } else if (randomInput <= 17){
+      RANDOMIZING = 0
+      dialogue = 'How you liking these colors?'
+      
+      JoiningIn1 = a
+      JoiningIn2 = n
+      JoiningIn3 = b
+      
+      A = 255
+      B = 0
+      C = 102  
+    } else if (randomInput <= 18){
+      RANDOMIZING = 0
+      dialogue = 'I probably should go back to work again... maybe'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 102
+      JoiningIn3 = 0
+      
+      A = 255
+      B = 104
+      C = 220
+    } else if (randomInput <= 19){
+      RANDOMIZING = 0
+      dialogue = 'Yeah, I should probably go back to work... now!'
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 127
+      B = 0
+      C = 255
+    } else if (randomInput <= 20){
+      RANDOMIZING = 0
+      dialogue = 'what about these colors, huh?'
+      
+      JoiningIn1 = b
+      JoiningIn2 = a
+      JoiningIn3 = n
+      
+      A = 200
+      B = 0
+      C = 200
+    } else if (randomInput <= 21){
+      RANDOMIZING = 210
+      dialogue = 'These colors seem nice too. I have them randomized!'
+      
+      
+      //Epilepsy Warning
+      Stroke1 = random(1,255)
+      Stroke2 = random(1,255)
+      Stroke3 = random(1,255)
+      
+      JoiningIn1 = 255
+      JoiningIn2 = 255
+      JoiningIn3 = 255
+      
+      A = 0
+      B = 200
+      C = 150 
+    } else if (randomInput <= 22){
+      RANDOMIZING = 0
+      dialogue = 'This one, I based the colors on my position. Fancy, huh?'
+      
+      JoiningIn1 = (windowWidth/2)+Face_Xmove
+      JoiningIn2 = (windowHeight/2)+Face_Ymove
+      JoiningIn3 = n + b
+      
+      A = 0
+      B = 200
+      C = 150
+    } else if (randomInput <= 23){
+      RANDOMIZING = 0
+      dialogue = 'Check these out. These colors are based on your position!'
+      
+      JoiningIn1 = mouseX
+      JoiningIn2 = mouseY
+      JoiningIn3 = a + b
+      
+      A = 255
+      B = 223
+      C = 0
     }
   
-    if (r>mouseY+300 || r<mouseY-300){
-      Cursor_Bar = Cursor_Bar - 1
+    fill(A,B,C)
+    stroke(a,n,b)
+    strokeWeight(7)
+    rect(0,windowHeight-100,windowWidth,windowHeight-100)
+
+    noStroke()
+    fill(Text_Color, Text_Color, Text_Color)
+    textSize(32)
+    text(dialogue, 25, windowHeight-40)
+  
+    
+    if (Text_Color>255 || Text_Color < 0){
+      Color_Change = Color_Change*-1
     }
+  
+    Text_Color = Text_Color + Color_Change
+  
   
     while(value>0){
     value = value - 1;
     }
+  
+  
 }
 
 function mousePressed() {
   if (value == 0) {
     value = 50;
-    LifeBar = LifeBar-(25*((1/Difficulty)*3));
+    
+    //X_Boundaries_Click
+    
+    if ((windowWidth/2)+Face_Xmove < mouseX && Face_Xchange < 0){
+      Face_Xchange = Face_Xchange
+    }
+    
+    if ((windowWidth/2)+Face_Xmove < mouseX && Face_Xchange > 0){
+      Face_Xchange = Face_Xchange*-1
+      Face_Ychange = random(1,9)*random(-1,1)
+    }
+    
+    if ((windowWidth/2)+Face_Xmove > mouseX && Face_Xchange < 0){
+      Face_Xchange = Face_Xchange*-1
+    }
+    
+    if ((windowWidth/2)+Face_Xmove > mouseX && Face_Xchange > 0){
+      Face_Xchange = Face_Xchange
+      Face_Ychange = random(1,9)*random(-1,1)
+    }
+    
+    randomInput = random(1,23)
+    Text_Color = 255
   }
 }
