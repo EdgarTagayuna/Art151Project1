@@ -245,7 +245,7 @@ function draw() {
     
     if (randomInput <= 1){
       RANDOMIZING = 0
-      dialogue = 'Hello World'
+      dialogue = 'Hello World! Click around, and find out what I do!'
     } else if (randomInput <= 2){
       RANDOMIZING = 0
       dialogue = 'Having fun yet?'
@@ -325,7 +325,7 @@ function draw() {
       C = 0
     } else if (randomInput <= 9){
       RANDOMIZING = 0
-      dialogue = 'I have about... 50 or so dialogues give or take?'
+      dialogue = 'I have about... 20 or so dialogues give or take? Maybe even more!'
       
       JoiningIn1 = 255
       JoiningIn2 = 255
