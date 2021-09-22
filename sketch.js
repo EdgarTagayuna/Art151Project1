@@ -1,6 +1,6 @@
 function setup() {
   
-  alert("This project is called Art 151 Project. The user interface is just clicking around the screen. Find out what happens on each click! The main focus I had on this project is to be creative and as messy as possible, utilizing marks, texts, colors, and shapes. Furthermore, I had the project set up in such a way where there will be two separate means of ahcieving this. The user and the computer. Together, the two will draw in an initially white canvas.")
+  alert("This project is called Art 151 Project. The user interface is just clicking around the screen and moving around the mouse. Find out what happens on each click! The main focus I had on this project is to be creative and as messy as possible, utilizing marks, texts, colors, and shapes. Furthermore, I had the project set up in such a way where there will be two separate means of ahcieving this. The user and the computer. Together, the two will draw in an initially white canvas.")
   
   //Other ball parameters
   createCanvas(windowWidth, windowHeight);
@@ -517,9 +517,6 @@ function mousePressed() {
     
     //X_Boundaries_Click
     
-    if ((windowWidth/2)+Face_Xmove < mouseX && Face_Xchange < 0){
-      Face_Xchange = Face_Xchange
-    }
     
     if ((windowWidth/2)+Face_Xmove < mouseX && Face_Xchange > 0){
       Face_Xchange = Face_Xchange*-1
@@ -530,10 +527,6 @@ function mousePressed() {
       Face_Xchange = Face_Xchange*-1
     }
     
-    if ((windowWidth/2)+Face_Xmove > mouseX && Face_Xchange > 0){
-      Face_Xchange = Face_Xchange
-      Face_Ychange = random(1,9)*random(-1,1)
-    }
     
     randomInput = random(1,23)
     Text_Color = 255
