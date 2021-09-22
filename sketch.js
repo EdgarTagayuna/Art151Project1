@@ -1,5 +1,7 @@
 function setup() {
   
+  alert("This project is called Art 151 Project. The user interface is just clicking around the screen. Find out what happens on each click! The main focus I had on this project is to be creative and as messy as possible, utilizing marks, texts, colors, and shapes. Furthermore, I had the project set up in such a way where there will be two separate means of ahcieving this. The user and the computer. Together, the two will draw in an initially white canvas.")
+  
   //Other ball parameters
   createCanvas(windowWidth, windowHeight);
   b = random(1,windowWidth-random(1,100))
