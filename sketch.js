@@ -1,6 +1,6 @@
 function setup() {
   
-  alert("This project is called Art 151 Project. The user interface is just clicking around the screen and moving around the mouse. Find out what happens on each click! The main focus I had on this project is to be creative and as messy as possible, utilizing marks, texts, colors, and shapes. Furthermore, I had the project set up in such a way where there will be two separate means of ahcieving this. The user and the computer. Together, the two will draw in an initially white canvas.")
+  alert("This project is called Art 151 Project. The user interface is just clicking around the screen and moving around the mouse. The face changes each time you get in to the website. It is based on the initial speed of movement. Find out what happens on each click! The text box may or may not explain certain features. The main focus I had on this project is to be creative and as messy as possible, utilizing marks, texts, colors, and shapes. Furthermore, I had the project set up in such a way where there will be two separate means of ahcieving this. The user and the computer. Together, the two will draw in an initially white canvas. Initially, I wanted to make the computer try to erase the drawing of the user. But that was a little too sad. I wanted a more uplifting message, so I had the computer join in with user, and draw.")
   
   //Other ball parameters
   createCanvas(windowWidth, windowHeight);
